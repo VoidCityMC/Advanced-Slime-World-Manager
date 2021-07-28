@@ -6,7 +6,6 @@ import com.grinderwolf.swm.api.SlimePlugin;
 import com.grinderwolf.swm.api.exceptions.*;
 import com.grinderwolf.swm.api.loaders.SlimeLoader;
 import com.grinderwolf.swm.api.world.SlimeWorld;
-import com.grinderwolf.swm.api.world.properties.SlimeProperties;
 import com.grinderwolf.swm.api.world.properties.SlimePropertyMap;
 import com.grinderwolf.swm.nms.CraftSlimeWorld;
 import com.grinderwolf.swm.nms.SlimeNMS;
@@ -14,7 +13,7 @@ import com.grinderwolf.swm.nms.v1_16_R1.v1_16_R1SlimeNMS;
 import com.grinderwolf.swm.nms.v1_16_R2.v1_16_R2SlimeNMS;
 import com.grinderwolf.swm.nms.v1_16_R3.v1_16_R3SlimeNMS;
 import com.grinderwolf.swm.nms.v1_17_R1.v1_17_R1SlimeNMS;
-import com.grinderwolf.swm.nms.v1_17_R2.v1_17_R2SlimeNMS;
+import com.grinderwolf.swm.nms.v1_17_R1_V2.v1_17_R2SlimeNMS;
 import com.grinderwolf.swm.plugin.commands.CommandManager;
 import com.grinderwolf.swm.plugin.config.ConfigManager;
 import com.grinderwolf.swm.plugin.config.WorldData;
@@ -38,8 +37,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static com.grinderwolf.swm.api.world.properties.SlimeProperties.*;
 

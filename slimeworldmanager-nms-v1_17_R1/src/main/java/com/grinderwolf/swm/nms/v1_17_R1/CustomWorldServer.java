@@ -11,6 +11,7 @@ import com.grinderwolf.swm.api.world.properties.SlimeProperties;
 import com.grinderwolf.swm.api.world.properties.SlimePropertyMap;
 import com.grinderwolf.swm.nms.CraftSlimeChunk;
 import com.grinderwolf.swm.nms.CraftSlimeWorld;
+import com.grinderwolf.swm.nms.v1_17_R1_V2.Utils_1_17_R1_V2;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.BlockPosition;
@@ -48,7 +49,9 @@ import org.bukkit.Material;
 import org.bukkit.event.world.WorldSaveEvent;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.*;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
@@ -74,7 +77,7 @@ public class CustomWorldServer extends WorldServer {
                              ResourceKey<World> worldKey, ResourceKey<WorldDimension> dimensionKey,
                              DimensionManager dimensionManager, ChunkGenerator chunkGenerator,
                              org.bukkit.World.Environment environment) throws IOException {
-        super(MinecraftServer.getServer(), MinecraftServer.getServer().aA,
+        super(MinecraftServer.getServer(), getExecutor(MinecraftServer.getServer()),
                 v1_17_R1SlimeNMS.CONVERTABLE.c(world.getName(), dimensionKey),
                 worldData, worldKey, dimensionManager, MinecraftServer.getServer().L.create(11),
                 chunkGenerator, false, 0, new ArrayList<>(), true, environment, null);
@@ -300,5 +303,15 @@ public class CustomWorldServer extends WorldServer {
         } else {
             slimeWorld.updateChunk(new NMSSlimeChunk(chunk));
         }
+    }
+
+    private static Executor getExecutor(MinecraftServer minecraftServer) {
+        Class<?> objectClass = minecraftServer.getClass();
+        for (Field field : objectClass.getFields()) {
+            if (field.getName().equals("aA")) {
+                return minecraftServer.aA;
+            }
+        }
+        return Utils_1_17_R1_V2.getExecutor(minecraftServer);
     }
 }

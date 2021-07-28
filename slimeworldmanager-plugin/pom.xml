@@ -64,7 +64,7 @@
         </dependency>
         <dependency>
             <groupId>com.grinderwolf</groupId>
-            <artifactId>slimeworldmanager-nms-v1_17_R2</artifactId>
+            <artifactId>slimeworldmanager-nms-v1_17_R1_V2</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
