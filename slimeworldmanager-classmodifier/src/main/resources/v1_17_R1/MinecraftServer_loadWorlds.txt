@@ -83,7 +83,22 @@
 
                     org.bukkit.generator.ChunkGenerator gen = $0.server.getGenerator(name);
                     net.minecraft.core.IRegistryCustom.Dimension iregistrycustom_dimension = $0.l;
-                    net.minecraft.resources.RegistryReadOps registryreadops = net.minecraft.resources.RegistryReadOps.a(net.minecraft.nbt.DynamicOpsNBT.a, $0.aC.i(), iregistrycustom_dimension);
+
+                    boolean fieldIsValid = false;
+                    java.lang.Class<?> objectClass = this.getClass();
+                    for (java.lang.reflect.Field field : objectClass.getFields()) {
+                        if (field.getName().equals("aC")) {
+                            fieldIsValid = true;
+                        }
+                    }
+
+                    if (fieldIsValid) {
+                        net.minecraft.resources.RegistryReadOps registryreadops = net.minecraft.resources.RegistryReadOps.a(net.minecraft.nbt.DynamicOpsNBT.a, $0.aC.i(), iregistrycustom_dimension);
+                    } else {
+                        net.minecraft.resources.RegistryReadOps registryreadops = net.minecraft.resources.RegistryReadOps.a(net.minecraft.nbt.DynamicOpsNBT.a, $0.aB.i(), iregistrycustom_dimension);
+                    }
+
+
                     worlddata = (net.minecraft.world.level.storage.WorldDataServer) worldSession.a(registryreadops, $0.datapackconfiguration);
                     net.minecraft.world.level.levelgen.GeneratorSettings generatorsettings;
 
@@ -96,7 +111,21 @@
                         } else {
                             net.minecraft.server.dedicated.DedicatedServerProperties dedicatedserverproperties = ((net.minecraft.server.dedicated.DedicatedServer)$0).getDedicatedServerProperties();
                             worldsettings = new net.minecraft.world.level.WorldSettings(dedicatedserverproperties.p, dedicatedserverproperties.o, dedicatedserverproperties.z, dedicatedserverproperties.n, false, new net.minecraft.world.level.GameRules(), $0.datapackconfiguration);
-                            generatorsettings = $0.options.has("bonusChest") ? dedicatedserverproperties.Y.j() : dedicatedserverproperties.Y;
+
+                            fieldIsValid = false;
+                            java.lang.Class<?> objectClass = dedicatedserverproperties.getClass();
+                            for (java.lang.reflect.Field field : objectClass.getFields()) {
+                                if (field.getName().equals("Y")) {
+                                    fieldIsValid = true;
+                                }
+                            }
+
+                            if (fieldIsValid) {
+                                generatorsettings = $0.options.has("bonusChest") ? dedicatedserverproperties.Y.j() : dedicatedserverproperties.Y;
+                            } else {
+                                generatorsettings = $0.options.has("bonusChest") ? dedicatedserverproperties.a(this.l).j() : dedicatedserverproperties.a(this.l);
+                            }
+
                         }
 
                         worlddata = new net.minecraft.world.level.storage.WorldDataServer(worldsettings, generatorsettings, com.mojang.serialization.Lifecycle.stable());
@@ -138,10 +167,26 @@
                     net.minecraft.resources.ResourceKey worldKey = net.minecraft.resources.ResourceKey.a(net.minecraft.core.IRegistry.Q, dimensionKey.a());
                     net.minecraft.server.level.progress.WorldLoadListener worldloadlistener = $0.L.create(11);
 
+                    fieldIsValid = false;
+                    java.lang.Class<?> objectClass = dedicatedserverproperties.getClass();
+                    for (java.lang.reflect.Field field : objectClass.getFields()) {
+                        if (field.getName().equals("aA")) {
+                            fieldIsValid = true;
+                        }
+                    }
+
                     if (worldId == 0) {
-                        world = new net.minecraft.server.level.WorldServer($0, $0.aA, worldSession, worlddata, worldKey, dimensionmanager, worldloadlistener, (net.minecraft.world.level.chunk.ChunkGenerator)chunkgenerator, flag, j, list, true, org.bukkit.World.Environment.getEnvironment(dimension), gen);
+                        if (fieldIsValid) {
+                            world = new net.minecraft.server.level.WorldServer($0, $0.aA, worldSession, worlddata, worldKey, dimensionmanager, worldloadlistener, (net.minecraft.world.level.chunk.ChunkGenerator)chunkgenerator, flag, j, list, true, org.bukkit.World.Environment.getEnvironment(dimension), gen);
+                        } else {
+                            world = new net.minecraft.server.level.WorldServer($0, $0.az, worldSession, worlddata, worldKey, dimensionmanager, worldloadlistener, (net.minecraft.world.level.chunk.ChunkGenerator)chunkgenerator, flag, j, list, true, org.bukkit.World.Environment.getEnvironment(dimension), gen);
+                        }
                     } else {
-                        world = new net.minecraft.server.level.WorldServer($0, $0.aA, worldSession, worlddata, worldKey, dimensionmanager, worldloadlistener, (net.minecraft.world.level.chunk.ChunkGenerator)chunkgenerator, flag, j, com.google.common.collect.ImmutableList.of(), true, org.bukkit.World.Environment.getEnvironment(dimension), gen);
+                        if (fieldIsValid) {
+                            world = new net.minecraft.server.level.WorldServer($0, $0.aA, worldSession, worlddata, worldKey, dimensionmanager, worldloadlistener, (net.minecraft.world.level.chunk.ChunkGenerator)chunkgenerator, flag, j, com.google.common.collect.ImmutableList.of(), true, org.bukkit.World.Environment.getEnvironment(dimension), gen);
+                        } else {
+                            world = new net.minecraft.server.level.WorldServer($0, $0.az, worldSession, worlddata, worldKey, dimensionmanager, worldloadlistener, (net.minecraft.world.level.chunk.ChunkGenerator)chunkgenerator, flag, j, com.google.common.collect.ImmutableList.of(), true, org.bukkit.World.Environment.getEnvironment(dimension), gen);
+                        }
                     }
                 } else {
                     worlddata = world.E;
