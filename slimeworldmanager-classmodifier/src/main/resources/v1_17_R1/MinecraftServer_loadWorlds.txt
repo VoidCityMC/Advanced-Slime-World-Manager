@@ -92,6 +92,7 @@
                         }
                     }
 
+                    net.minecraft.resources.RegistryReadOps registryreadops = null;
                     if (fieldIsValid) {
                         net.minecraft.resources.RegistryReadOps registryreadops = net.minecraft.resources.RegistryReadOps.a(net.minecraft.nbt.DynamicOpsNBT.a, $0.aC.i(), iregistrycustom_dimension);
                     } else {
