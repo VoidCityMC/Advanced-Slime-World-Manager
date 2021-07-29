@@ -85,7 +85,7 @@
                     net.minecraft.core.IRegistryCustom.Dimension iregistrycustom_dimension = $0.l;
 
                     boolean fieldIsValid = false;
-                    java.lang.Class<?> objectClass = this.getClass();
+                    java.lang.Class<?> objectClass = $0.getClass();
                     for (java.lang.reflect.Field field : objectClass.getFields()) {
                         if (field.getName().equals("aC")) {
                             fieldIsValid = true;
@@ -123,7 +123,7 @@
                             if (fieldIsValid) {
                                 generatorsettings = $0.options.has("bonusChest") ? dedicatedserverproperties.Y.j() : dedicatedserverproperties.Y;
                             } else {
-                                generatorsettings = $0.options.has("bonusChest") ? dedicatedserverproperties.a(this.l).j() : dedicatedserverproperties.a(this.l);
+                                generatorsettings = $0.options.has("bonusChest") ? dedicatedserverproperties.a($0.l).j() : dedicatedserverproperties.a($0.l);
                             }
 
                         }
